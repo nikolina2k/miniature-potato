@@ -42,13 +42,11 @@ import EssentialLink from "components/EssentialLink.vue";
 const linksList = [
   {
     title: "Todo list",
-    caption: "quasar.dev",
     icon: "format_list_bulleted",
     link: "/",
   },
   {
     title: "Settings",
-    caption: "quasar.dev",
     icon: "settings",
     link: "/settings",
   },
