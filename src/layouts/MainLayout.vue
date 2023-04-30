@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -11,13 +11,28 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-toolbar-title class="absolute-center"> Quasar App </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-footer elevated>
+      <q-tabs>
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-tabs>
+    </q-footer>
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      breakpoint="768"
+      :width="250"
+      show-if-above
+      bordered
+      class="bg-secondary"
+    >
       <q-list>
         <q-item-label header> Navigation </q-item-label>
 
@@ -25,6 +40,7 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          class="text-grey-7"
         />
       </q-list>
     </q-drawer>
@@ -72,3 +88,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+@media screen and (min-width: 754px) {
+  .q-footer {
+    display: none;
+  }
+
+  .q-drawer .q-router-link--exact-active {
+    color: $primary !important;
+  }
+}
+</style>
