@@ -15,8 +15,8 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer elevated>
-      <q-tabs>
+    <q-footer elevated color>
+      <q-tabs class="bg-secondary text-grey-7">
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -27,7 +27,7 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      breakpoint="768"
+      :breakpoint="768"
       :width="250"
       show-if-above
       bordered
