@@ -16,13 +16,15 @@
     </q-header>
 
     <q-footer elevated color>
-      <q-tabs class="bg-secondary text-grey-7">
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-tabs>
+      <div class="footer-content">
+        <q-tabs class="bg-secondary text-grey-7">
+          <EssentialLink
+            v-for="link in essentialLinks"
+            :key="link.title"
+            v-bind="link"
+          />
+        </q-tabs>
+      </div>
     </q-footer>
 
     <q-drawer
@@ -90,6 +92,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.footer-content {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: $secondary;
+}
+
 @media screen and (min-width: 754px) {
   .q-footer {
     display: none;
