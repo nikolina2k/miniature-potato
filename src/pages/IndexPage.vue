@@ -1,13 +1,24 @@
 <template>
   <q-page class="q-pa-lg">
-    <q-list separator bordered>
+    <q-list v-if="Object.keys(tasks).length" separator bordered>
       <task v-for="(task, key) in tasks" :key="key" :task="task" :id="key">
       </task>
     </q-list>
 
     <div class="button">
-      <q-btn round dense color="primary" size="24px" icon="add" />
+      <q-btn
+        @click="showAddTask = true"
+        round
+        dense
+        color="primary"
+        size="24px"
+        icon="add"
+      />
     </div>
+
+    <q-dialog v-model="showAddTask">
+      <add-task @close="showAddTask = false" />
+    </q-dialog>
   </q-page>
 </template>
 
@@ -15,13 +26,20 @@
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
 import Task from "components/tasks/Task.vue";
+import AddTask from "components/modals/AddTask.vue";
 
 export default defineComponent({
+  data() {
+    return {
+      showAddTask: false,
+    };
+  },
   computed: {
     ...mapGetters("tasks", ["tasks"]),
   },
   components: {
     Task,
+    AddTask,
   },
 });
 </script>
