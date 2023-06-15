@@ -15,16 +15,11 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer elevated color>
-      <div class="footer-content">
-        <q-tabs class="bg-secondary text-grey-7">
-          <EssentialLink
-            v-for="link in essentialLinks"
-            :key="link.title"
-            v-bind="link"
-          />
-        </q-tabs>
-      </div>
+    <q-footer color>
+      <q-tabs class="bg-secondary text-grey-7">
+        <q-route-tab to="/" icon="format_list_bulleted" label="Todo list" />
+        <q-route-tab to="/settings" icon="settings" label="Settings" />
+      </q-tabs>
     </q-footer>
 
     <q-drawer
@@ -92,19 +87,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.footer-content {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: $secondary;
-}
-
 @media screen and (min-width: 754px) {
   .q-footer {
     display: none;
   }
+}
 
-  .q-drawer .q-router-link--exact-active {
-    color: $primary !important;
-  }
+.q-drawer .q-router-link--exact-active {
+  color: $primary !important;
 }
 </style>
