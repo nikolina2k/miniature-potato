@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title class="absolute-center"> Quasar App </q-toolbar-title>
+        <q-toolbar-title class="absolute-center"> MyTasks </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
