@@ -1,33 +1,13 @@
 <template>
   <q-card>
-    <q-card-section class="row">
-      <div class="text-h6">Add Task</div>
-      <q-space />
-      <q-btn flat round dense icon="close" v-close-popup />
-    </q-card-section>
-
+    <modal-header>Add Task</modal-header>
     <form @submit.prevent="submitForm">
       <q-card-section class="q-pt-none">
-        <div class="row q-mb-sm">
-          <q-input
-            outlined
-            autofocus
-            :rules="[(val) => !!val || 'This field is required']"
-            v-model="taskToCreate.name"
-            ref="name"
-            label="Task name"
-            class="col"
-          >
-            <template v-slot:append>
-              <q-icon
-                v-if="taskToCreate.name"
-                name="close"
-                @click="taskToCreate.name = ''"
-                class="cursor-pointer"
-              />
-            </template>
-          </q-input>
-        </div>
+        <modal-task-name 
+          :name="taskToCreate.name" 
+          @changeName="updateTaskName" 
+        />
+
         <div class="row q-mb-sm">
           <q-input outlined v-model="taskToCreate.dueDate" label="Due date">
             <template v-slot:append>
@@ -93,12 +73,15 @@
           type="submit"
         />
       </q-card-actions>
+      <pre>{{ taskToCreate }}</pre>
     </form>
   </q-card>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import ModalHeader from "./ModalHeader.vue";
+import ModalTaskName from "./ModalTaskName.vue";
 
 export default {
   data() {
@@ -127,6 +110,13 @@ export default {
       this.taskToCreate.dueDate = "";
       this.taskToCreate.dueTime = "";
     },
+    updateTaskName(newName) {
+      this.taskToCreate.name = newName;
+    },
+  },
+  components: {
+    ModalHeader,
+    ModalTaskName,
   },
 };
 </script>
